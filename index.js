@@ -4,6 +4,7 @@ var path = require('path');
 
 //express要求用这个来解析传过来的数据
 var bodyParser = require('body-parser');
+//用来遍历js动态路由
 
 var util = require('./util/util.js');
 
@@ -21,6 +22,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+//动态添加路由
+util.routeAdaptor(app);
+
+/*
 //监听路由
 app.get('/echo', function(req, res, next){
 	//1.从req的query中获取提交过来的参数
@@ -48,6 +53,7 @@ app.post('/echo', function(req, res, next){
 	res.send(JSON.stringify(req.body));//给客户端返回一个json格式的数据
 	res.end();
 });
+*/
 
 //启动web服务器
 var server = http.createServer(app).listen(app.get('port'), function(){
