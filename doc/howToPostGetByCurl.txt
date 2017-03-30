@@ -1,0 +1,7 @@
+post data using curl
+
+//下列命令可以通过curl来post一段json，如果要查看具体过程，请使用curl -v  ...
+curl -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"data1":"罗", "data2":99, "data3":"luo"}' "http://127.0.0.1:3000/echo"
+
+//下列命令可以通过curl来发送get请求
+curl "http://127.0.0.1:3000/echo?a=99&b=nihao"
