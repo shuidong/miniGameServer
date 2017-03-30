@@ -6,14 +6,15 @@ var path = require('path');
 var bodyParser = require('body-parser');
 //用来遍历js动态路由
 
-var util = require('./util/util.js');
+var utils = require('./utils');
+var conf = require('./conf');
 
 //var jsonParser = bodyParser.json()
 
 var app = express();
 
 //设置端口
-app.set('port', process.env.PORT || 3000);
+app.set('port', conf.http.port || 3000);
 
 //设置静态文件目录
 app.use(express.static(path.join(__dirname, 'public')));
@@ -23,7 +24,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 //动态添加路由
-util.routeAdaptor(app);
+utils.routeAdaptor(app);
 
 /*
 //监听路由
@@ -58,4 +59,28 @@ app.post('/echo', function(req, res, next){
 //启动web服务器
 var server = http.createServer(app).listen(app.get('port'), function(){
   console.log('game server listening on port ' + app.get('port'));
+  console.log('pid=' + process.pid);
+});
+
+/*
+* process退出前会执行
+* 搭配SIGINT一起用效果好
+*/
+process.on('exit', function () {
+	console.log('byebye!');
+  	//fs.writeFileSync('/tmp/myfile', 'This MUST be saved on exit.');
+});
+
+//未捕获的异常发生了
+process.on('uncaughtException', function (err) {
+	console.error('An uncaught error occurred!');
+	console.error(err.stack);
+});
+
+/*
+* 按下ctrl-C时触发
+*/
+process.on('SIGINT', function () {
+  //console.log('Got a SIGINT.');
+  process.exit(0);
 });

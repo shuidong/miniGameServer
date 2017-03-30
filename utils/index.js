@@ -3,15 +3,15 @@
 */
 var fs = require('fs');
 
-var util = module.exports = {};
-util.getNowTime = function(){
+var utils = module.exports = {};
+utils.getNowTime = function(){
 	return Date.now();
 }
 
 /*
 * 遍历 控制器目录 下的脚本，提取其中的方法，动态添加路由
 */
-util.routeAdaptor = function(app){
+utils.routeAdaptor = function(app){
 	const relativePath = "../controllers/";
 	var controllerPath = __dirname + "/" + relativePath;
 	var files = fs.readdirSync(controllerPath);
@@ -30,3 +30,28 @@ util.routeAdaptor = function(app){
 		});
 	});
 }
+
+/*
+* process.uptime()用于获取程序已运行的秒数
+*/
+var _profileTime = -1;
+utils.profileStart = function(){
+	_profileTime = process.uptime();
+}
+
+
+/**
+ * Invoke callback with check
+ */
+utils.invokeCallback = function (cb) {
+  if (!!cb && typeof cb === 'function') {
+    cb.apply(null, Array.prototype.slice.call(arguments, 1));
+  }
+}
+
+utils.isDebug = function(){
+	var env = process.env.NODE_ENV || 'production';
+	env = env.toLowerCase();
+	return env !== 'production';
+}
+
