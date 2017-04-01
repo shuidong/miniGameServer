@@ -11,6 +11,8 @@ var conf = require('./conf');
 
 var logger = require('./logger');
 var log4jsCfg = conf.log4js;
+
+logger.createLogDir([log4jsCfg.appenders]);
 logger.configure(JSON.parse(JSON.stringify(log4jsCfg)));
 
 //var jsonParser = bodyParser.json()

@@ -1,10 +1,10 @@
 var log4js = require('log4js');
+var fs = require('fs');
+var path = require('path');
 
-var config_ = '';
 
 function configure(config,opt){
 	opt = opt || {};
-	config_ = config;
 	log4js.configure(config,opt);
 };
 
@@ -68,6 +68,33 @@ function colorize(str, style) {
 	return colorizeStart(style) + str + colorizeEnd(style);
 }
 
+function createLogDir(appendersArr){
+    for(var i = 0;i<appendersArr.length;i++){
+        var locAppenders = appendersArr[i];
+        for(var key in locAppenders){
+            var locObj = locAppenders[key];
+            if(locObj.type == "dateFile"){
+                var locIndex = locObj.filename.lastIndexOf("/");
+                var locDir = locObj.filename.substr(0,locIndex+1);
+                //fs.mkdirSync(locDir);
+                locDir.split('/').forEach((dir, index, splits) => {
+				  const parent = splits.slice(0, index).join('/');
+				  const dirPath = path.resolve(parent, dir);
+				  if (!fs.existsSync(dirPath)) {
+				    fs.mkdirSync(dirPath);
+				  }
+				});
+            }
+        }
+    }
+}
+
+
+// Create dir recursively if it does not exist!
+const targetDir = 'path/to/dir';
+
+
+
 var styles = {
 	//styles
 	'bold': [1, 22],
@@ -101,5 +128,6 @@ var colours = {
 module.exports = {
 	configure: configure,
 	getLogger: getLogger,
-	getLog4js: getLog4js
+	getLog4js: getLog4js,
+	createLogDir: createLogDir
 };

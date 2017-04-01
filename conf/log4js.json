@@ -5,7 +5,7 @@
     },
     {
         "type": "dateFile",
-        "filename": "./logs/main//logger",
+        "filename": "./logs/main/logger",
         "maxLogSize": 1048576,
         "pattern": "_yyyy-MM-dd.log",
         "alwaysIncludePattern": true,
@@ -17,7 +17,7 @@
     },
     {
       "type": "dateFile",
-      "filename": "./logs/main//sys-error",
+      "filename": "./logs/main/sys-error",
       "maxLogSize": 1048576,
       "pattern": "_yyyy-MM-dd.log",
       "alwaysIncludePattern": true,
@@ -29,7 +29,7 @@
     },
     {
       "type": "dateFile",
-      "filename": "./logs/main//pay",
+      "filename": "./logs/main/pay",
       "maxLogSize": 1048576,
       "pattern": "_yyyy-MM-dd.log",
       "alwaysIncludePattern": true,
@@ -41,7 +41,7 @@
     },
     {
       "type": "dateFile",
-      "filename": "./logs/main//route",
+      "filename": "./logs/main/route",
       "maxLogSize": 1048576,
       "pattern": "_yyyy-MM-dd.log",
       "alwaysIncludePattern": true,
