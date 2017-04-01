@@ -1,0 +1,75 @@
+{
+  "appenders": [
+    {
+      "type": "console"
+    },
+    {
+        "type": "dateFile",
+        "filename": "./logs/main/logger",
+        "maxLogSize": 1048576,
+        "pattern": "_yyyy-MM-dd.log",
+        "alwaysIncludePattern": true,
+        "layout": {
+          "type": "basic"
+        },
+        "backups": 5,
+        "category": "logger"
+    },
+    {
+      "type": "dateFile",
+      "filename": "./logs/main/sys-error",
+      "maxLogSize": 1048576,
+      "pattern": "_yyyy-MM-dd.log",
+      "alwaysIncludePattern": true,
+      "layout": {
+        "type": "basic"
+      },
+      "backups": 5,
+      "category": "sys-error"
+    },
+    {
+      "type": "dateFile",
+      "filename": "./logs/main/pay",
+      "maxLogSize": 1048576,
+      "pattern": "_yyyy-MM-dd.log",
+      "alwaysIncludePattern": true,
+      "layout": {
+        "type": "basic"
+      },
+      "backups": 5,
+      "category": "pay"
+    },
+    {
+      "type": "dateFile",
+      "filename": "./logs/main/route",
+      "maxLogSize": 1048576,
+      "pattern": "_yyyy-MM-dd.log",
+      "alwaysIncludePattern": true,
+      "layout": {
+        "type": "basic"
+      },
+      "backups": 5,
+      "category": "route"
+    }
+  ],
+  "levels": {
+    "console": "DEBUG",
+    "logger":"DEBUG",
+    "sys-error": "DEBUG",
+    "pay": "INFO",
+    "route":"DEBUG",
+    "worker":"DEBUG",
+    "monitor-request":"INFO",
+    "monitor-send":"INFO",
+    "bi-wing":"INFO",
+    "bi-realm":"INFO",
+    "bi-boss":"INFO",
+    "bi-upStarStone":"INFO",
+    "bi-mysterShop":"INFO",
+    "bi-callBoss":"INFO",
+    "bi-lottery":"INFO",
+    "bi-genuineQi":"INFO"
+  },
+  "replaceConsole": true,
+  "lineDebug": false
+}

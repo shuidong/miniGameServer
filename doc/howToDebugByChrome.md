@@ -6,9 +6,9 @@
 
 #### 启动带参数的node
 -	启动node
-~~~shell
+```shell
 $ node --debug-brk app.js
-~~~
+```
 -	启动inspector
 ~~~shell
 $ node-inspector
